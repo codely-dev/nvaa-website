@@ -95,8 +95,14 @@ class AthletesIndexPage(Page):
     ], null=True, blank=True, use_json_field=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("header", heading="Teaser"),
-        FieldPanel("services", heading="Teaser"),
+        MultiFieldPanel(
+            [
+                FieldPanel("header", heading="Hero"),
+            ],
+            heading="Bilder",
+        ),
+        FieldPanel("teaser", heading="Teaser"),
+        FieldPanel("services", heading="Services"),
     ]
 
     @property
