@@ -1,21 +1,47 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
-
+<section>
+<div class="container">
+    <div class="row">
+        <div class="hero col-12">
+            <div class="hero-information">
+                <h1>Building bridges <br>
+                    between sports and business
+                </h1>
+            </div>
+            <div class="hero-image">
+                {% image self.hero original as img %}
+                <img src="{{ img.url }}" class="hero-img" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2>We create value for<br>
+                    athletes, teams and brands
+                </h2>
+                <div class="">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="text">
+                    {{ self.value }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
+{% block extra_js %}
+{% endblock %}

@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% load i18n %}
-
 {% load wagtailcore_tags wagtailimages_tags static %}
 
 
@@ -17,53 +15,66 @@ Delete the line below if you're just getting started and want to remove the welc
 <section class="overlay d-flex flex-column justify-content-end jarallax" data-jarallax="" data-speed="0.5">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-10 col-xl-8">
+        <div class="col-lg-8">
           <h1>{{ self.title }}</h1>
         </div>
       </div>
     </div>
+    {% image self.header original as img %}
     <div id="jarallax-container-0" class="jarallax-container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: -100; clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%);">
-        <img src="https://img.redbull.com/images/c_crop,x_0,y_0,h_4885,w_7328/c_fill,w_1950,h_1200/q_auto,f_auto/redbullcom/2024/8/12/oite4j1yxy6kzydublzl/rhys-mcclenaghan-pommel-horse" alt="Image" class="jarallax-img" data-jarallax-original-styles="" style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 1499px; height: 994.398px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; margin-top: 124.301px; transform: translate3d(0px, -94.4102px, 0px);">
+        <img src="{{ img.url }}" alt="Image" class="jarallax-img" data-jarallax-original-styles="" style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 1499px; height: 994.398px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; margin-top: 124.301px; transform: translate3d(0px, -94.4102px, 0px);">
     </div>
 </section>
 <section>
     <div class="container">
+      {% if self.teaser %}
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-lg-8">
                 <div class="teaser">
                     {{ self.teaser }}
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="row justify-content-center">
-          <div class="d-flex gap-3 col-8">
-          {% for item in athletes %}
-            <div class="athlete d-flex flex-column col-4">
-              <img src="{{ item.image.url }}" alt="" srcset="" class="athlete-img">
-                <div class="athlete-information">
-                  <div class="athlete-name">{{ item.title }}</div>
-                </div>
+          <div class="col-lg-8">
+            <div class="row g-3">
+              {% for item in athletes %}
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <a href="{{ item.url }}" class="athlete">
+                  {% image item.image original as img %}
+                  <img src="{{ img.url }}" alt="" srcset="" class="athlete-img">
+                  <div class="athlete-information">
+                    <div class="athlete-name">{{ item.title }}</div>
+                  </div>
+                </a>
               </div>
               {% endfor %}
+          </div>
         </div>
       </div>
     </div>
 </section>
-<section>
+{% if page.services %}
+<section class="services">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-8">
-        <div class="bio">
-          {{ self.bio }}
+      <div class="col-lg-8">
+        <div class="row">
+        <h2>Our services</h2>
+        {% for block in page.services %}
+        <div class="service col-sm-12 col-md-6 col-lg-4">
+          <div class="service-information">
+            <div class="service-heading">{{ block.value.service_title }}</div>
+            <div class="service-description">{{ block.value.service_description }}</div>
+          </div>          
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>
 </section>
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
+{% endif %}
 
 {% endblock content %}
 

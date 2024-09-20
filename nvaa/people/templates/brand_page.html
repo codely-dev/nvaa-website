@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 {% load wagtailcore_tags wagtailimages_tags static %}
 
 
@@ -28,39 +30,41 @@ Delete the line below if you're just getting started and want to remove the welc
 <section>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-lg-8">
                 <div class="teaser">
                     {{ self.teaser }}
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="facts">
-                    <div class="fact col-6">
-                        <div class="fact-heading">Year of foundation</div>
-                        <div class="fact-data">{{ self.foundation_year }}</div>
-                    </div>
-                    <div class="fact col-6">
-                      <div class="fact-heading">Sport</div>
-                      <div class="fact-data">{{ self.sports }}</div>
-                  </div>
-                </div>
+          <div class="col-lg-8">
+            <div class="bio">
+              {{ self.bio }}
             </div>
+          </div>
         </div>
     </div>
 </section>
-<section>
+{% if page.services %}
+<section class="services">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-8">
-        <div class="page-content">
-          {{ self.content }}
+      <div class="col-lg-8">
+        <div class="row">
+        <h2>Our services</h2>
+        {% for block in page.services %}
+        <div class="service col-sm-12 col-md-6 col-lg-4">
+          <div class="service-information">
+            <div class="service-heading">{{ block.value.service_title }}</div>
+            <div class="service-description">{{ block.value.service_description }}</div>
+          </div>          
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>
 </section>
+{% endif %}
 
 {% comment %}
 Delete the line below if you're just getting started and want to remove the welcome screen!

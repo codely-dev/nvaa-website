@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+{% endblock extra_css %}
+
+{% block content %}
+<section class="overlay d-flex flex-column justify-content-end jarallax" data-jarallax="" data-speed="0.5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-8">
+        <h1>{{ self.title }}</h1>
+      </div>
+    </div>
+  </div>
+  {% image self.header original as img %}
+  <div id="jarallax-container-0" class="jarallax-container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: -100; clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%);">
+      <img src="{{ img.url }}" alt="Image" class="jarallax-img" data-jarallax-original-styles="" style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 1499px; height: 994.398px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; margin-top: 124.301px; transform: translate3d(0px, -94.4102px, 0px);">
+  </div>
+</section>
+<section>
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-8">
+              <div class="teaser">
+                  {{ self.teaser }}
+              </div>
+          </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 d-flex gap-4 align-items-center">
+          {% image self.portrait original as img %}
+          <img src="{{ img.url }}" alt="Nico Voegeli" class="col-4 col-lg-3 avatar avatar-xlg">
+          <div class="col-4 contact-nvaa">
+            <div class="contact-name mb-2">{{ self.name }}</div>
+            <div class="contact-information-details vstack">
+              <a href="mailto:{{ self.mail }}" class="contact-channel">{{ self.mail }}</a>
+              <a href="tel:{{ self.phone }}" class="contact-channel">{{ self.phone }}</a>
+            </div>
+          </div>
+        </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="bio">
+            {{ self.bio }}
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-8">
+              <img src="{% static 'images/map.png' %}" alt="Map" class="map">
+          </div>
+      </div>
+  </div>
+</section>
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock %}

@@ -34,9 +34,9 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
-    "home",
-    "search",
+    'home',
     'people',
+    'utils',
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    'wagtail_modeladmin',
+    'wagtailmenus',
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -84,6 +86,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'wagtailmenus.context_processors.wagtailmenus',
             ],
         },
     },

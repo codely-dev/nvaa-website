@@ -7,11 +7,97 @@ from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.snippets.models import register_snippet
 
-from sortedm2m.fields import SortedManyToManyField
+class ContactPage(Page):
+    template = "contact_page.html"
+    max_count = 1
+    subpage_types = []
+
+    header = models.ForeignKey("wagtailimages.Image", null=True,
+                              blank=True, related_name="+", on_delete=models.SET_NULL)
+    portrait = models.ForeignKey("wagtailimages.Image", null=True,
+                              blank=True, related_name="+", on_delete=models.SET_NULL)
+    teaser = models.TextField("Teaser", max_length=256, null=True, blank=True,)
+    name = models.CharField("Name", max_length=50, null=True, blank=True,)
+    phone = models.CharField("Telefon", max_length=50, null=True, blank=True,)
+    mail = models.CharField("E-Mail", max_length=50, null=True, blank=True,)
+
+    bio = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+    ], null=True, blank=True, use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("header", heading="Header"),
+        FieldPanel("teaser", heading="Teaser"),
+        MultiFieldPanel(
+            [
+                FieldPanel("portrait", heading="Portrait"),
+                FieldPanel("name", heading="Name"),
+                FieldPanel("phone", heading="Telefon"),
+                FieldPanel("mail", heading="E-Mail"),
+            ], heading="Kontaktinformationen",),
+        FieldPanel("bio", heading="Bio"),
+    ]
+
+    class Meta:
+        verbose_name = "Kontakt"
+        verbose_name_plural = "Kontakt"
+
+class BrandPage(Page):
+    template = "brand_page.html"
+    max_count = 1
+    subpage_types = []
+
+    header = models.ForeignKey("wagtailimages.Image", null=True,
+                              blank=True, related_name="+", on_delete=models.SET_NULL)
+    teaser = models.TextField("Teaser", max_length=256, null=True, blank=True,)
+
+    bio = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+    ], null=True, blank=True, use_json_field=True)
+
+    services = StreamField([
+        ('service', blocks.StructBlock([
+            ('service_title', blocks.CharBlock()),
+            ('service_description', blocks.RichTextBlock(features=['bold',])),
+        ], )),
+    ], null=True, blank=True, use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("header", heading="Header"),
+        MultiFieldPanel(
+            [
+                FieldPanel("teaser", heading="Teaser"),
+                FieldPanel("bio", heading="Services"),
+            ],
+            heading="Fakten",
+        ),
+        FieldPanel("services", heading="Services"),
+    ]
+
+    class Meta:
+        verbose_name = "Brand"
+        verbose_name_plural = "Brands"
 
 class AthletesIndexPage(Page):
     template = "athletes_index_page.html"
     max_count = 1
+    subpage_types = ['AthletePage', 'TeamPage']
+
+    header = models.ForeignKey("wagtailimages.Image", null=True,
+                              blank=True, related_name="+", on_delete=models.SET_NULL)
+    teaser = models.TextField("Teaser", max_length=256, null=True, blank=True,)
+
+    services = StreamField([
+        ('service', blocks.StructBlock([
+            ('service_title', blocks.CharBlock()),
+            ('service_description', blocks.RichTextBlock(features=['bold',])),
+        ], )),
+    ], null=True, blank=True, use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("header", heading="Teaser"),
+        FieldPanel("services", heading="Teaser"),
+    ]
 
     @property
     def athletes(self):
@@ -30,6 +116,10 @@ class AthletesIndexPage(Page):
         context = super().get_context(request)
         context['athletes'] = athletes
         return context
+
+    class Meta:
+        verbose_name = "Athleten & Teams"
+        verbose_name_plural = "Athleten & Teams"
 
 class AthletePage(Page):
     template = "athlete_page.html"

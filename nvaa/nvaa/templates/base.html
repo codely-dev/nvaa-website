@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar menu_tags %}
 
 
 <!DOCTYPE html>
@@ -59,12 +59,14 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi" fill="#fff" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+                      </svg>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <div class="py-2 py-lg-0">
                         <ul class="navbar-nav">
-                            NVAA
+                            {% main_menu max_levels=1 template="./navigation/nav_menu.html" apply_active_classes=True %}
                         </ul>
                     </div>
                 </div>
@@ -78,7 +80,7 @@
     <footer class="footer">
         <div class="container">
             <div class="justify-content-center row">
-                <div class="contact col-8">
+                <div class="contact col-lg-8">
                     <div class="contact-heading">
                         We bring people together through sport
                     </div>
@@ -92,7 +94,7 @@
                 </div>
             </div>
             <div class="justify-content-center row">
-                <div class="copyright col-8">
+                <div class="copyright col-lg-8">
                     <small>© NVAA. built by <a href="https://www.codely.ch/" target="_blank"><span
                                 class="codely">Codely</span></a></small>
                 </div>

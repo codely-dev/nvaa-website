@@ -22,21 +22,22 @@ Delete the line below if you're just getting started and want to remove the welc
         </div>
       </div>
     </div>
+    {% image self.header original as img %}
     <div id="jarallax-container-0" class="jarallax-container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: -100; clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%);">
-        <img src="https://img.redbull.com/images/c_crop,x_0,y_0,h_4885,w_7328/c_fill,w_1950,h_1200/q_auto,f_auto/redbullcom/2024/8/12/oite4j1yxy6kzydublzl/rhys-mcclenaghan-pommel-horse" alt="Image" class="jarallax-img" data-jarallax-original-styles="" style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 1499px; height: 994.398px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; margin-top: 124.301px; transform: translate3d(0px, -94.4102px, 0px);">
+        <img src="{{ img.url }}" alt="Image" class="jarallax-img" data-jarallax-original-styles="" style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 1499px; height: 994.398px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; margin-top: 124.301px; transform: translate3d(0px, -94.4102px, 0px);">
     </div>
 </section>
 <section>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-lg-8">
                 <div class="teaser">
                     {{ self.teaser }}
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-lg-8">
                 <div class="facts">
                     <div class="fact col-6">
                         <div class="fact-heading">Birthdate</div>
@@ -63,7 +64,7 @@ Delete the line below if you're just getting started and want to remove the welc
 <section>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-8">
+      <div class="col-lg-8">
         <div class="bio">
           {{ self.bio }}
         </div>
