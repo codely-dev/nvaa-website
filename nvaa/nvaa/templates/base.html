@@ -88,8 +88,8 @@
                         Let's connect
                     </div>
                     <div class="contact-information vstack">
-                        <a href="mailto:nico@nvaa.ch">nico@nvaa.ch</a>
-                        <a href="tel:+">071 571 37 22</a>
+                        <a href="mailto:{{ self.mail }}">{{ self.mail }}</a>
+                        <a href="tel:{{ self.phone }}">{{ self.phone }}</a>
                     </div>
                 </div>
             </div>
@@ -110,11 +110,6 @@
 
     <!-- Jarallax JS -->
     <script src="https://cdn.jsdelivr.net/npm/jarallax@2/dist/jarallax.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jarallax@2/dist/jarallax-video.min.js"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/jarallax@2/dist/jarallax-video.min.js"></script>
-
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}
     {% endblock %}
