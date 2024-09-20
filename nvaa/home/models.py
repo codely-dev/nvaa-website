@@ -15,18 +15,15 @@ class HomePage(Page):
     hero = models.ForeignKey("wagtailimages.Image", null=True,
                               blank=True, related_name="+", on_delete=models.SET_NULL)
 
-    value = models.TextField("value", null=True, blank=True,)
+    bio = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+    ], null=True, blank=True, use_json_field=True)
     phone = models.CharField("Telefon", max_length=50, null=True, blank=True,)
     mail = models.CharField("E-Mail", max_length=50, null=True, blank=True,)
 
     content_panels = Page.content_panels + [
         FieldPanel("hero", heading="Hero"),
-        MultiFieldPanel(
-            [
-                FieldPanel("value", heading="Werteversprechen"),
-            ],
-            heading="Fakten",
-        ),
+        FieldPanel("bio", heading="Werteversprechen"),
         MultiFieldPanel(
             [
                 FieldPanel("phone", heading="Telefon"),
