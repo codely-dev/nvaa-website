@@ -18,6 +18,7 @@ class HomePage(Page):
     bio = StreamField([
         ('paragraph', blocks.RichTextBlock()),
     ], null=True, blank=True, use_json_field=True)
+    
     phone = models.CharField("Telefon", max_length=50, null=True, blank=True,)
     mail = models.CharField("E-Mail", max_length=50, null=True, blank=True,)
 

@@ -185,6 +185,15 @@
     padding: 2rem 0 0 0;
 }
 
+.bio p:first-child {
+    padding-top: 2rem;
+}
+
+.bio b {
+    color: #f5f5f7;
+    font-weight: inherit;
+}
+
 .avatar {
     border-radius: 1000px;
     border: 2px solid #efbf04;
