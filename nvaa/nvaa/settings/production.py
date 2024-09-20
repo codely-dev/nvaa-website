@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = os.getenv("DEBUG")
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
 
